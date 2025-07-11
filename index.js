@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import {
+  MONGO_DB,
   MONGO_IP,
   MONGO_PASSWORD,
   MONGO_PORT,
@@ -15,7 +16,7 @@ import ratingRoutes from "./routes/rating.route.js";
 import scheduleRoutes from "./routes/schedule.route.js";
 dotenv.config({ quiet: true });
 
-const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/?authSource=admin`;
+const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_PORT}/${MONGO_DB}?authSource=admin`;
 
 const connectWithRetry = () => {
   mongoose
