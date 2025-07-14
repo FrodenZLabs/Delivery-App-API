@@ -20,7 +20,7 @@ const mongoURL = `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_IP}:${MONGO_
 
 const connectWithRetry = () => {
   mongoose
-    .connect(mongoURL)
+    .connect(process.env.MONGO_URL)
     .then(() => {
       console.log("✅ Successfully connected to database");
     })
