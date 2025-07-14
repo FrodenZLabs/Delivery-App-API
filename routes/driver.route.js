@@ -12,7 +12,7 @@ import upload from "../middlewares/multer.js";
 const router = express.Router();
 
 router.post(
-  "/add",
+  "/add/:id",
   upload.single("imageUrl"),
   uploadSingle,
   verifyToken,

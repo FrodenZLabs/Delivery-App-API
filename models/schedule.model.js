@@ -23,7 +23,7 @@ const scheduleSchema = new mongoose.Schema(
       required: true,
     },
     scheduleDate: {
-      type: Number,
+      type: Date,
       required: true,
     },
     scheduleTime: {

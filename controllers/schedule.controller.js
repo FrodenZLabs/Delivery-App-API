@@ -21,7 +21,7 @@ export const createSchedule = async (request, response, next) => {
       userId,
       serviceId,
       deliveryInfoId,
-      scheduleDate,
+      scheduleDate: new Date(scheduleDate),
       scheduleTime,
       status: "Pending",
     });

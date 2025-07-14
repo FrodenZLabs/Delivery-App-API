@@ -34,11 +34,13 @@ export const addDriver = async (request, response, next) => {
 export const getAllDrivers = async (request, response, next) => {
   try {
     const drivers = await Driver.find();
+    const total = await Driver.find().countDocuments();
 
     response.status(200).json({
       success: true,
       message: "Driver information retrieved successfully",
       data: drivers,
+      total,
     });
   } catch (error) {
     next(errorHandler(500, "Error occurred while fetching drivers."));
@@ -84,12 +86,14 @@ export const getDriversByServiceId = async (request, response, next) => {
   try {
     const serviceId = request.params.id;
 
-    const drivers = await Driver.findById(serviceId);
+    const drivers = await Driver.find({ serviceId });
+    const total = await Driver.find({ serviceId }).countDocuments();
 
     response.status(200).json({
       success: true,
       message: "Drivers retrieved successfully",
       data: drivers,
+      total,
     });
   } catch (error) {
     next(errorHandler(500, "Error occurred while fetching services."));

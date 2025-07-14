@@ -42,8 +42,6 @@ export const createService = async (request, response, next) => {
       service,
     });
   } catch (error) {
-    console.log(error);
-
     next(errorHandler(500, "Error creating service"));
   }
 };
