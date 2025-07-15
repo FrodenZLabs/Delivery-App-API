@@ -24,7 +24,7 @@ export const createSchedule = async (request, response, next) => {
       scheduleDate: new Date(scheduleDate),
       scheduleTime,
       status: "Pending",
-    });
+    }).populate("driverId");
 
     await newSchedule.save();
     response.status(201).json({
@@ -63,10 +63,7 @@ export const updateScheduleByID = async (request, response, next) => {
       scheduleId,
       { $set: { status } },
       { new: true, runValidators: true }
-    )
-      .populate("driverId")
-      .populate("serviceId")
-      .populate("deliveryInfoId");
+    ).populate("driverId");
 
     if (!updatedSchedule) {
       return next(errorHandler(404, "Schedule not found."));
@@ -88,10 +85,7 @@ export const getScheduleByUserID = async (request, response, next) => {
     const statusFilter = request.query.status;
 
     // 1. Fetch all schedules for the user
-    let schedules = await Schedule.find({ userId })
-      .populate("driverId")
-      .populate("serviceId")
-      .populate("deliveryInfoId");
+    let schedules = await Schedule.find({ userId }).populate("driverId");
 
     // 2. If a status filter is provided, filter the results
     if (statusFilter) {
