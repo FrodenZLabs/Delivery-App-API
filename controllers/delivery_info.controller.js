@@ -85,10 +85,7 @@ export const getDeliveryInfoByUserID = async (request, response, next) => {
     const userId = request.params.id;
 
     // Find all delivery records that match the userId
-    const userDeliveries = await DeliveryInfo.find({ userId }).populate(
-      "userId",
-      "email firstName lastName"
-    );
+    const userDeliveries = await DeliveryInfo.find({ userId });
 
     if (!userDeliveries) {
       return next(errorHandler(404, "User delivery information not found"));
