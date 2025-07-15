@@ -22,7 +22,7 @@ export const createDeliveryInfo = async (request, response, next) => {
     response.status(201).json({
       success: true,
       message: "Delivery Information added successfully",
-      deliveryInfo,
+      data: deliveryInfo,
     });
   } catch (error) {
     next(errorHandler(500, "Error creating delivery info", error));
