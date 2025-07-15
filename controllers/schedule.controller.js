@@ -30,7 +30,7 @@ export const createSchedule = async (request, response, next) => {
     response.status(201).json({
       success: true,
       message: "Schedule added successfully.",
-      newSchedule,
+      data: newSchedule,
     });
   } catch (error) {
     next(errorHandler(500, "Error occurred while creating schedule."));
