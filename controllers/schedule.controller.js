@@ -24,16 +24,16 @@ export const createSchedule = async (request, response, next) => {
       scheduleDate: new Date(scheduleDate),
       scheduleTime,
       status: "Pending",
-    }).populate("driverId");
+    });
 
     await newSchedule.save();
+
     response.status(201).json({
       success: true,
       message: "Schedule added successfully.",
       data: newSchedule,
     });
   } catch (error) {
-    console.log("Error: ", error);
     next(errorHandler(500, "Error occurred while creating schedule."));
   }
 };
@@ -64,7 +64,7 @@ export const updateScheduleByID = async (request, response, next) => {
       scheduleId,
       { $set: { status } },
       { new: true, runValidators: true }
-    ).populate("driverId");
+    );
 
     if (!updatedSchedule) {
       return next(errorHandler(404, "Schedule not found."));
