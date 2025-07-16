@@ -33,6 +33,7 @@ export const createSchedule = async (request, response, next) => {
       data: newSchedule,
     });
   } catch (error) {
+    console.log("Error: ", error);
     next(errorHandler(500, "Error occurred while creating schedule."));
   }
 };
