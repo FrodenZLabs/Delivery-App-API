@@ -87,7 +87,8 @@ export const getScheduleByUserID = async (request, response, next) => {
     // 1. Fetch all schedules for the user
     let schedules = await Schedule.find({ userId })
       .populate("driverId")
-      .populate("serviceId");
+      .populate("serviceId")
+      .populate("deliveryInfoId");
 
     // 2. If a status filter is provided, filter the results
     if (statusFilter) {
