@@ -27,10 +27,6 @@ export const createSchedule = async (request, response, next) => {
     });
 
     await newSchedule.save();
-    await newSchedule
-      .populate("driverId")
-      .populate("serviceId")
-      .populate("deliveryInfoId");
 
     response.status(201).json({
       success: true,
